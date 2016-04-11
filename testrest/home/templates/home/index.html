@@ -223,12 +223,10 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
 					
 					<div class="col-sm-4">
 						<h5>{{ gallery.title }}</h5><br />
-						{% for photo in gallery.photos.all %}
-							<a href="{{ photo.get_absolute_url }}" data-toggle="lightbox" data-gallery="{{ gallery.title }}" >
-                                <img src="{{ photo.get_thumbnail_url }}" class="img-responsive">
+							<a href="{{ gallery.sample.get_absolute_url }}" data-toggle="lightbox" data-gallery="{{ gallery.title }}" >
+                                <img src="{{ gallery.sample|first }}" class="img-responsive">
                             </a>
-                            <div data-toggle="lightbox" data-gallery="{{ gallery.title }}" data-remote="{{ photo.get_absolute_url }}" data-title="{{ photo.title }}"></div>
-						{% endfor %}
+                            <div data-toggle="lightbox" data-gallery="{{ gallery.title }}" data-remote="{{ gallery.photo.get_absolute_url }}" data-title="{{ gallery.photo.title }}"></div>
 				{% endfor %}
 <!--
             		<div class="col-sm-4">
