@@ -116,10 +116,6 @@
     <!-- Section top logo -->
             <div class="central-logo"><p></p></div>
     <div class="planepane">
-	<div>
-	<h2>TADY</h2>
-	{% include 'base.html' %}
-	</div>
     <section id="akce">
         <div class="container">
 		<div class="row">
@@ -209,7 +205,6 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
 			</ul>
 </div>
                 </div>
-            </div>
         </section>
 
 
@@ -224,6 +219,18 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                 </div>
 
                 <div class="col-sm-12">
+				{% for gallery in galleries %}
+					
+					<div class="col-sm-4">
+						<h5>{{ gallery.title }}</h5><br />
+						{% for photo in gallery.photos.all %}
+							<a href="{{ photo.get_absolute_url }}" data-toggle="lightbox" data-gallery="{{ gallery.title }}" >
+                                <img src="{{ photo.get_thumbnail_url }}" class="img-responsive">
+                            </a>
+                            <div data-toggle="lightbox" data-gallery="{{ gallery.title }}" data-remote="{{ photo.get_absolute_url }}" data-title="{{ photo.title }}"></div>
+						{% endfor %}
+				{% endfor %}
+<!--
             		<div class="col-sm-4">
                 		<h5>Z naší kuchyně</h5>
                             <a href="./gallery/z_kuchyne/IMG_0080.jpg" data-toggle="lightbox" data-gallery="z_kuchyne" >
@@ -232,6 +239,7 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
 							<div data-toggle="lightbox" data-gallery="z_kuchyne" data-remote="./gallery/z_kuchyne/20151216_181820.jpg" data-title="Hidden item 1"></div>
 							<div data-toggle="lightbox" data-gallery="z_kuchyne" data-remote="./gallery/z_kuchyne/20151216_181853.jpg" data-title="Hidden item 1"></div>
 					</div>
+-->
 				</div>
 			</div>
         </section>
@@ -405,10 +413,11 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                             <div class="bs-example" data-example-id="hoverable-table">
                                 <table class="table table-hover">
 					{% include 'jidelni_listek/polednimenu.html' with list_id=polmenu.id %}
-
                                 </table>
 				<hr />
-				<p class="bottom_line_description">{{ list.bottom_line_description }}</p>
+				<p class="bottom_line_description">K polednímu menu lze objednat 0,3 l sody s citronem za 10,-</p>
+				<p class="bottom_line_description">Informace o alergenech poskytujeme na vyžádání u obsluhy.</p>
+
                             </div>
 
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>

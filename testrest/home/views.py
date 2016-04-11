@@ -3,9 +3,11 @@ import os
 import datetime
 from django.utils import timezone
 from django.template import RequestContext
+from django.views.generic.list import ListView
 from jidelni_listek.models import Product, Type, DailyProduct, List, PoledniMenu
 from photologue.views import PhotoListView
 
+from photologue.models import Photo, Gallery
 from braces.views import JSONResponseMixin
 
 
@@ -14,7 +16,14 @@ class PhotoJSONListView(JSONResponseMixin, PhotoListView):
     def render_to_response(self, context, **response_kwargs):
         return self.render_json_object_response(context['object_list'],
                                                 **response_kwargs)
+class GalleryListView(ListView):
+    queryset = Gallery.objects.on_site().is_public()
+    paginate_by = 20
  
+class PhotoListView(ListView):
+    queryset = Photo.objects.on_site().is_public()
+    paginate_by = 20
+
 def index(request):
     lists = get_list_or_404(List)
     polednimenu = get_list_or_404(PoledniMenu)
@@ -36,6 +45,8 @@ def index(request):
         poledni_menu_weekly[poledni_id] = DailyProduct.objects.filter(valid_for_date__range=[start_week, end_week]).filter(dtype=2).all()
         poledni_menu_daily[poledni_id] = DailyProduct.objects.filter(valid_for_date__range=[start_week, end_week]).filter(dtype=3).all().order_by('valid_for_date', 'ptype') 
          
+	galleries = Gallery.objects.on_site().is_public()
+	photos = Photo.objects.on_site().is_public()
 
     return render(request, 'home/index.html', {
         'lists': lists,
@@ -46,6 +57,8 @@ def index(request):
         'poledni_menu_daily': poledni_menu_daily,
         'start_week' : start_week,
         'end_week': end_week,
+		'galleries': galleries,
+		'photos': photos,
     })
         
 
