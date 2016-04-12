@@ -13,6 +13,8 @@ class Product(SortableMixin):
     lists = models.ManyToManyField('List', blank=True, verbose_name='Patří do lístku')
     product_type = models.ForeignKey('Type', blank=True, verbose_name='Typ')
     pub_date = models.DateTimeField('Platnost od', default=timezone.now())  
+#	plist = models.CharField('Doporučené pivo', blank=True, max_length=200, verbose_name='Doporučené pivo')
+#	vlist = models.CharField('Doporučené víno', blank=True, max_length=200, verbose_name='Doporučené víno')
     plist = models.ForeignKey('self', related_name='+', blank=True, limit_choices_to={'product_type__name': 'Pivo'}, verbose_name='Doporučené pivo', null=True, default="")
     vlist = models.ForeignKey('self', related_name='+', blank=True, limit_choices_to={'product_type__name': 'Víno'}, verbose_name='Doporučené víno', null=True, default="")
     product_description = models.TextField('Popis', blank=True)

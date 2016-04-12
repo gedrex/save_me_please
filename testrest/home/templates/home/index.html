@@ -23,7 +23,7 @@
     <link href="{% static 'css/ekko-lightbox.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="{% static 'css/agency.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
@@ -42,8 +42,15 @@
 </head>
 
 <body id="page-top" class="index">
-
-
+	<div class="embed-responsive embed-responsive-16by9" id="video_div">
+    <figure class="overlay">
+    <video autoplay loop class="embed-responsive-item" id="video">
+    <source src="{% static 'video/restaurace.mp4' %}" type="video/mp4">
+    </video>
+    <figcaption>
+    <a href="#" id="introbutton" class="btn btn-lg btn-info">Přeskočit intro</a></figcaption>
+    </figure>
+    </div>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-head">
@@ -84,11 +91,6 @@
                     <li>
                         <a class="page-scroll" href="#pozvanka" data-toggle="modal">Akce</a>
                     </li>
-                    <!--
-                    <li>
-                        <a class="page-scroll" href="./wordpress/index.php  ">Repu'blog'ika</a>
-                    </li>
-                    -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -118,38 +120,14 @@
     <div class="planepane">
     <section id="akce">
         <div class="container">
-		<div class="row">
-			<div class="col-sm-12 text-center pozvanka-palanova">
-				<h4>Srdečně Vás zveme na vernisáž</h4>
-   				<img src="{% static 'home/images/pozvanka_jana_palanova_1024-1.jpg' %}"
-					srcset = "{% static 'home/images/pozvanka_jana_palanova_320-1.jpg' %} 320w, {% static 'home/images/pozvanka_jana_palanova_480-1.jpg' %} 480w, {% static 'home/images/pozvanka_jana_palanova_600-1.jpg' %} 600w, {% static 'home/images/pozvanka_jana_palanova_768-1.jpg' %} 768w, {% static 'home/images/pozvanka_jana_palanova_1024-1.jpg' %} 1024w" alt="Srdečně Vás zveme na vernisáž Jany Palánové" />
+			<div class="row">
+				<div class="col-sm-12 text-center pozvanka-palanova">
+				<h4>Přijďte si k nám zlepšit den :-)</h4>
+   				<img src="{% static 'images/pozvanky/pozvanka-1.jpg' %}" class="img-responsive"
+					srcset = "{% static 'images/pozvanky/pozvanka_320-1.jpg' %} 320w, {% static 'images/pozvanky/pozvanka_480-1.jpg' %} 480w, {% static 'images/pozvanky/pozvanka_600-1.jpg' %} 600w, {% static 'images/pozvanky/pozvanka_768-1.jpg' %} 768w, {% static 'images/pozvanky/pozvanka_1024-1.jpg' %} 1024w" alt="Srdečně Vás zveme na vernisáž" />
+				</div>
 			</div>
-
 		</div>
-            <div class="row">
-		<div class="col-sm-12 text-center">
-			<h3>Nové vinařství v nabídce naší Republiky</h3>
-                	<div class="col-sm-6 text-center wines">
-				<img src="{% static 'home/images/wines.png' %}">
-                	</div>
-		
-                	<div class="col-sm-6 text-left">
-				<h4>Nabídka vín vinařství Němeček</h4>
-				<hr>
-				<p>Vinařství Němeček reprezentuje rodina Karla Němečka, který se aktivně podílí na znovu obnovení vinařského umění ve Vičickém údolí od roku 1985. Láska k vinné révě postupně zasáhla celou rodinu a vyústila k založení rodinné firmy.
-
-   Naše vinice připomínají díky své poloze Pálavu - rozprostírají se na jižním svahu nad velkou vodní plochou Nechranické nádrže a zároveň jsou chráněné věncem Krušných a Doupovských hor.
-
-   Vyrábíme vína čistě malovinařskými postupy - hlavně selským rozumem! Na rozdíl od většiny výrobců vína probíhají u nás všechny podstatné školící operace už ve fázi zpracování moštu. V dalších fázích výroby se již snažíme do vývoje vína nezasahovat. Proto naše vína dosahují lahvové zralosti nejdříve po 15 až 36 měsících ležení a mají velký potenciál pro archivaci.
-
-   Vína ze zdejších vinic mají podobně jako vína mostecká, litoměřická, roudnická a mělnická osobitý charakter nejsevernější vinařské oblasti s
-výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je různorodost podle ročníku, sklepmistrem zvolené technologie a šarže.
-
-   Přejeme Vám příjemné chvíle strávené s originálními víny z podhůří Krušných hor!</p>
-                	</div>
-		</div>
-            </div>
-        </div>
     </section>
     <!-- nabídka Section -->
         <section id="nabidka">
@@ -170,18 +148,14 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                                     <i class="fa fa-{{ list.icon }} fa-3x"></i>
                                 </div>
                             </div>
-
-
                             <div class="nabidka-caption">
                                 <h4 class="service-heading">{{ list.name }}</h4>
                                 <p class="text-muted">{{ list.list_long_description }}<br />Více...</p>
                             </div>
                         </a>
-
                     </div>
 			{% if forloop.counter|divisibleby:3 %}</div>{% endif %}
 		{% endfor %}
-		
 		{% for menu in polednimenu %}
                     <div class="col-md-4 nabidka-item">
                         <a href="#polednimenu" class="nabidka-link" data-toggle="modal">
@@ -190,18 +164,14 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                                     <i class="fa fa-{{ menu.icon }} fa-3x"></i>
                                 </div>
                             </div>
-
-
                             <div class="nabidka-caption">
                                 <h4 class="service-heading">{{ menu.name }}</h4>
-                                <p class="text-muted">{{ menu.list_long_description }}<br />Více...</p>
+                                <p class="text-muted">Od rána do večera s prázdným žaludkem? To by nešlo. Dejte si
+                                    u nás poctivý český oběd<br />Více...</p>
                             </div>
                         </a>
-
                     </div>
                 {% endfor %}
-
-		
 			</ul>
 </div>
                 </div>
@@ -217,35 +187,24 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                         <h3 class="section-subheading text-muted">Nahlédněte pod pokličku</h3>
                     </div>
                 </div>
-
                 <div class="col-sm-12">
 				{% for gallery in galleries %}
-					
 					<div class="col-sm-4">
 						<h5>{{ gallery.title }}</h5><br />
-							<a href="{{ gallery.sample.get_absolute_url }}" data-toggle="lightbox" data-gallery="{{ gallery.title }}" >
-                                <img src="{{ gallery.sample|first }}" class="img-responsive">
+							<a href="{{ gallery.photos.first.image.url }}" data-toggle="lightbox" data-gallery="{{ gallery.title }}" >
+                                <img src="{{ gallery.sample.1.get_thumbnail_url }}" class="img-responsive">
                             </a>
-                            <div data-toggle="lightbox" data-gallery="{{ gallery.title }}" data-remote="{{ gallery.photo.get_absolute_url }}" data-title="{{ gallery.photo.title }}"></div>
-				{% endfor %}
-<!--
-            		<div class="col-sm-4">
-                		<h5>Z naší kuchyně</h5>
-                            <a href="./gallery/z_kuchyne/IMG_0080.jpg" data-toggle="lightbox" data-gallery="z_kuchyne" >
-                            	<img src="./gallery/z_kuchyne/thumbs/IMG_0080_thumb.jpg" class="img-responsive">
-                            </a>
-							<div data-toggle="lightbox" data-gallery="z_kuchyne" data-remote="./gallery/z_kuchyne/20151216_181820.jpg" data-title="Hidden item 1"></div>
-							<div data-toggle="lightbox" data-gallery="z_kuchyne" data-remote="./gallery/z_kuchyne/20151216_181853.jpg" data-title="Hidden item 1"></div>
+					{% for photo in gallery.photos.all %}
+                            <div data-toggle="lightbox" data-gallery="{{ gallery.title }}" data-remote="{{ photo.image.url }}" data-title="{{ photo.title }}" class="img-responsive"></div>
+					{% endfor %}
 					</div>
--->
+				{% endfor %}
 				</div>
 			</div>
         </section>
-
-
         <!-- Team Section -->
         <section id="team">
-            <div class="container">
+		<div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">o nás</h2>
@@ -255,48 +214,74 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="team-member">
-                            <img src="img/team/marketka.jpg" class="img-responsive img-circle" alt="">
-                            <h4>Markétka</h4>
+                            <img src="{% static 'images/team/terka.jpg' %}" class="img-responsive img-circle" alt="">
+                            <h4>Terka</h4>
                             <p class="text-muted">ministryně ranní pohody</p>
 
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="team-member">
-                            <img src="img/team/vita.jpg" class="img-responsive img-circle" alt="">
+                            <img src="{% static 'images/team/vita.jpg' %}" class="img-responsive img-circle" alt="">
                             <h4>Víťa</h4>
                             <p class="text-muted">prezident</p>
 
                         </div>
                     </div>
-                    <div class="col-sm-4">
+					<div class="col-sm-4">
                         <div class="team-member">
-                            <img src="img/team/tom.jpg" class="img-responsive img-circle" alt="">
+                            <img src="{% static 'images/team/tom.jpg' %}" class="img-responsive img-circle" alt="">
                             <h4>Tom</h4>
-                            <p class="text-muted">ministr piva a vína</p>
+                            <p class="text-muted">ministr vína</p>
 
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="team-member">
-                            <img src="img/team/tomik.jpg" class="img-responsive img-circle" alt="">
+                            <img src="{% static 'images/team/tomik.jpg' %}" class="img-responsive img-circle" alt="">
                             <h4>Tom</h4>
                             <p class="text-muted">ministr přes steaky</p>
 
                         </div>
                     </div>
-                    <div class="col-sm-6">
+	            <div class="col-sm-4">
                         <div class="team-member">
-                            <img src="img/team/tonda.jpg" class="img-responsive img-circle" alt="">
+                            <img src="{% static 'images/team/danca.jpg' %}" class="img-responsive img-circle" alt="">
+                            <h4>Danča</h4>
+                            <p class="text-muted">ministryně skvělých večeří</p>
+
+                        </div>
+					</div>
+				<div class="col-sm-4">
+                        <div class="team-member">
+                            <img src="{% static 'images/team/tonda.jpg' %}" class="img-responsive img-circle" alt="">
                             <h4>Tonda</h4>
-                            <p class="text-muted">ministr míchaných nápojů a kávy</p>
+                            <p class="text-muted">ministr piva</p>
 
                         </div>
                     </div>
 
                 </div>
+        <div class="row">
+                    <div class="col-sm-6">
+                        <div class="team-member">
+                            <img src="{% static 'images/team/ivca.jpg' %}" class="img-responsive img-circle" alt="">
+                            <h4>Ivča</h4>
+                            <p class="text-muted">ministryně dobrého oběda</p>
+
+                        </div>
+                    </div>
+			<div class="col-sm-6">
+                        <div class="team-member">
+                            <img src="{% static 'images/team/mara.jpg' %}" class="img-responsive img-circle" alt="">
+                            <h4>Mára</h4>
+                            <p class="text-muted">ministr kávy</p>
+
+                        </div>
+                    </div>
+        </div>
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 text-center">
                         <p class="large text-muted"></p>
@@ -304,8 +289,6 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                 </div>
             </div>
         </section>
-
-
         <!-- Contact Section -->
         <section id="contact">
             <div class="container">
@@ -344,12 +327,12 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                     <h3 class="section-heading mapa">Vyberte si prosím stůl</h3>
                     <div class="col-sm-6 mapa">
                         <p class="section-subheading">Přízemí</p>
-                        <a href="#mapa1modal" data-toggle="modal"><img src="./img/mapa1.png"></a>
+                        <a href="#mapa1modal" data-toggle="modal"><img src="{% static 'images/mapa1.png' %}"></a>
 
                     </div>
                     <div class="col-sm-6 mapa">
                         <p class="section-subheading">Sklepení</p>
-                        <a href="#mapa2modal" data-toggle="modal"><img src="./img/mapa2.png"></a>
+                        <a href="#mapa2modal" data-toggle="modal"><img src="{% static 'images/mapa2.png' %}"></a>
                     </div>
                 </div>
 
@@ -375,14 +358,6 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                     -->
                 </div>
                 <div class="col-md-4">
-                <!--
-                <ul class="list-inline quicklinks">
-                    <li><a href="#">Privacy Policy</a>
-                    </li>
-                    <li><a href="#">Terms of Use</a>
-                    </li>
-                </ul>
-                -->
             </div>
         </div>
     </div>
@@ -415,9 +390,7 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
 				<hr />
 				<p class="bottom_line_description">K polednímu menu lze objednat 0,3 l sody s citronem za 10,-</p>
 				<p class="bottom_line_description">Informace o alergenech poskytujeme na vyžádání u obsluhy.</p>
-
                             </div>
-
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
                         </div>
                     </div>
@@ -452,711 +425,11 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
     </div>
 
     <!-- fotogalerie Modal 1 -->
-    <div class="fotogalerie-modal modal fade" id="IMG_6198" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6198.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- fotogalerie Modal 2 -->
-    <div class="fotogalerie-modal modal fade" id="IMG_6206" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6206.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- nabidka Modal 3 -->
-    <div class="fotogalerie-modal modal fade" id="IMG_6227" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6227.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   	<!-- nabidka Modal 3 -->
     <!-- fotogalerie Modal 4 -->
-    <div class="fotogalerie-modal modal fade" id="IMG_6230" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6230.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- fotogalerie Modal 5 -->
-    <div class="fotogalerie-modal modal fade" id="IMG_6233" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6233.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fotogalerie-modal modal fade" id="IMG_6236" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6236.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fotogalerie-modal modal fade" id="IMG_6244" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6244.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fotogalerie-modal modal fade" id="IMG_6256" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6256.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fotogalerie-modal modal fade" id="IMG_6262" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6262.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fotogalerie-modal modal fade" id="IMG_6269" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6269.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fotogalerie-modal modal fade" id="IMG_6303" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6303.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_6317" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/jidlopiti/IMG_6317.jpg" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9116" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9116.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9118" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9118.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9125" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9125.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9134" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9134.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9139" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9139.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9140" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9140.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9148" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9148.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9151" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9151.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9156" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9156.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9164" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9164.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9174" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9174.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9189" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9189.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9208" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9208.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9209" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9209.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9210" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9210.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9224" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9224.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9237" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9237.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fotogalerie-modal modal fade" id="IMG_9279" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Foto name</h2>
-                            <img class="img-responsive img-centered" src="img/2015_11_04/IMG_9279.JPG" alt="">
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Zavřít</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- fotogalerie Modal -->
 
 
@@ -1175,7 +448,7 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                             <div class="modal-body">
                                 <h2>Přízemí</h2>
                                 <h3>Pro rezervaci volejte 607 450 006</h3>
-                                <img class="img-responsive img-centered" src="./img/mapa1.png" alt="mapa přízemí">
+                                <img class="img-responsive img-centered" src="{% static 'images/mapa1.png' %}" alt="mapa přízemí">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal"><i
                                         class="fa fa-times"></i> Zavřít</button>
                             </div>
@@ -1200,7 +473,7 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
                         <div class="modal-body">
                             <h2>Přízemí</h2>
                             <h3>Pro rezervaci volejte 607 450 006</h3>
-                            <img class="img-responsive img-centered" src="./img/mapa2.png" alt="mapa přízemí">
+                            <img class="img-responsive img-centered" src="{% static 'images/mapa2.png' %}" alt="mapa přízemí">
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i
                                     class="fa fa-times"></i> Zavřít</button>
                         </div>
@@ -1214,7 +487,16 @@ výrazným odrůdovým buketem a pikantní kyselinkou. Jejich zajímavostí je r
 
 
 
-
+	<script type="text/javascript"> 
+		document.getElementById('introbutton').onclick = function check(e){ 
+    	var target = (e && e.target) || (event && event.srcElement); 
+    	var obj = document.getElementById('video_div'); 
+    	if(target != obj){
+        	obj.style.display='none';
+        	document.getElementById('video').pause();
+    	} 
+	}
+	</script>
     <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
 
